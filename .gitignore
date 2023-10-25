@@ -2,7 +2,3 @@ hotels_db
 api/node_modules
 api/package-lock.json
 .env
-env
-api/.env
-./.env
-./api/.env
