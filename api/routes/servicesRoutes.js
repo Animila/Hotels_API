@@ -1,91 +1,100 @@
-// const { User } = require('../Models/models')\
+const { Service } = require('../config/models')
+const serviceController = require('../controllers/servicesController')
 
-// const getAllServices = {
-// 	schema: {
-// 		tags: ['services'],
-// 		response: {
-// 			200: {
-// 				success: { type: 'boolean' },
-// 				data: User,
-// 			},
-// 			404: {
-// 				success: { type: 'boolean', default: false },
-// 				message: { type: 'string' },
-// 			},
-// 			500: {
-// 				success: { type: 'boolean', default: false },
-// 				message: { type: 'string' },
-// 			},
-// 		},
-// 		params: {
-// 			id: { type: 'number' },
-// 		},
-// 	},
-// 	handler: getUser,
-// }
+const getAll = {
+	schema: {
+		tags: ['services'],
+		response: {
+			200: {
+				success: { type: 'boolean' },
+				data: {
+					type: 'array',
+					items: Service,
+				},
+			},
+			500: {
+				success: { type: 'boolean', default: false },
+				message: { type: 'string' },
+			},
+		},
+	},
+	handler: serviceController.GET.getAllServices,
+}
 
-// const loginResponseUser = {
-// 	schema: {
-// 		tags: ['services'],
-// 		response: {
-// 			200: {
-// 				success: { type: 'boolean' },
-// 				data: User,
-// 			},
-// 			404: {
-// 				success: { type: 'boolean', default: false },
-// 				message: { type: 'string' },
-// 			},
-// 			500: {
-// 				success: { type: 'boolean', default: false },
-// 				message: { type: 'string' },
-// 			},
-// 		},
-// 		body: {
-// 			login: { type: 'string' },
-// 			password: { type: 'string' },
-// 		},
-// 	},
-// 	handler: loginUser,
-// }
+const getById = {
+	schema: {
+		tags: ['services'],
+		response: {
+			200: {
+				success: { type: 'boolean' },
+				data: Service,
+			},
+		},
+		params: {
+			id: { type: 'number' },
+		},
+	},
+	handler: serviceController.GET.getServiceById,
+}
 
-// const registerResponseUser = {
-// 	schema: {
-// 		tags: ['services'],
-// 		response: {
-// 			200: {
-// 				success: { type: 'boolean' },
-// 				data: User,
-// 			},
-// 			404: {
-// 				success: { type: 'boolean', default: false },
-// 				message: { type: 'string' },
-// 			},
-// 			500: {
-// 				success: { type: 'boolean', default: false },
-// 				message: { type: 'string' },
-// 			},
-// 		},
-// 		body: {
-// 			login: { type: 'string' },
-// 			password: { type: 'string' },
-// 			first_name: { type: 'string' },
-// 			last_name: { type: 'string' },
-// 			third_name: { type: 'string' },
-// 			sex: { type: 'number' },
-// 			birthday: { type: 'string' },
-// 			start_day: { type: 'string' },
-// 			end_day: { type: 'string' },
-// 		},
-// 	},
-// 	handler: registerUser,
-// }
+const create = {
+	schema: {
+		tags: ['services'],
+		response: {
+			200: {
+				success: { type: 'boolean' },
+				data: Service,
+			},
+		},
+		body: {
+			title: { type: 'string' },
+			price: { type: 'string' },
+		},
+	},
+	handler: serviceController.POST.createService,
+}
+const updateById = {
+	schema: {
+		tags: ['services'],
+		response: {
+			200: {
+				success: { type: 'boolean' },
+				data: Service,
+			},
+		},
+		params: {
+			id: { type: 'number' },
+		},
+		body: {
+			title: { type: 'string' },
+			price: { type: 'string' },
+		},
+	},
+	handler: serviceController.PUT.updateService,
+}
+const deleteById = {
+	schema: {
+		tags: ['services'],
+		response: {
+			200: {
+				success: { type: 'boolean' },
+				data: { id: { type: 'number' } },
+			},
+		},
+		params: {
+			id: { type: 'number' },
+		},
+	},
+	handler: serviceController.DELETE.deleteService,
+}
 
-// function usersRoutes(fastify, options, done) {
-// 	fastify.post('/users/login', loginResponseUser)
-// 	fastify.post('/users/register', registerResponseUser)
-// 	fastify.get('/users/:id', getResponseUser)
-// 	done()
-// }
+function servicesRoutes(fastify, options, done) {
+	fastify.get('/services', getAll)
+	fastify.get('/services/:id', getById)
+	fastify.post('/services', create)
+	fastify.put('/services/:id', updateById)
+	fastify.delete('/services/:id', deleteById)
+	done()
+}
 
-// module.exports = usersRoutes
+module.exports = servicesRoutes

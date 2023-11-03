@@ -6,7 +6,7 @@ const Position = {
 	},
 }
 
-const Services = {
+const Service = {
 	type: 'object',
 	properties: {
 		id: { type: 'number' },
@@ -67,6 +67,7 @@ const User = {
 
 module.exports = {
 	User,
+	Service,
 	Position,
 	Employee,
 	Guest,

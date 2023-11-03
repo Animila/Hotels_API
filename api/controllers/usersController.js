@@ -59,7 +59,12 @@ const GET = {
 const POST = {
 	async loginUser(req, reply) {
 		const { login, password } = req.body
-		console.log(login, password)
+		if (!login)
+			return reply.status(500).send({ success: false, message: 'нет login' })
+
+		if (!password)
+			return reply.status(500).send({ success: false, message: 'нет password' })
+
 		const result = await userModels.loginAuth(login, password)
 		if (!result.success)
 			return reply.status(502).send({ success: false, message: result.message })
@@ -80,7 +85,6 @@ const POST = {
 		const data = req.body
 
 		if (!data.login) {
-			;[]
 			return reply.status(500).send({ success: false, message: 'нет login' })
 		}
 		if (!data.password) {

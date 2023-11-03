@@ -8,10 +8,10 @@ const ServiceModels = {
 			return { success: false, message: error }
 		}
 	},
-	async getServiceById(serviceId) {
+	async getServiceById(id) {
 		try {
 			const result = await db.query('SELECT * FROM services WHERE id = $1;', [
-				serviceId,
+				id,
 			])
 			return { success: true, data: result.rows }
 		} catch (error) {
@@ -42,8 +42,8 @@ const ServiceModels = {
 	},
 	async deleteService(id) {
 		try {
-			const result = await db.query('DELETE FROM services WHERE id=$1;', [id])
-			return { success: true, data: result.rows }
+			await db.query('DELETE FROM services WHERE id=$1;', [id])
+			return { success: true }
 		} catch (error) {
 			return { success: false, message: error }
 		}

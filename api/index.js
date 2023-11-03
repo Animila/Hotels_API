@@ -13,7 +13,7 @@ fastify.register(require('@fastify/swagger'), {
 	},
 })
 fastify.register(require('./routes/usersRoutes'))
-
+fastify.register(require('./routes/servicesRoutes'))
 
 const start = async () => {
 	try {
