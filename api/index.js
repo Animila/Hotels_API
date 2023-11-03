@@ -1,21 +1,19 @@
 const fastify = require('fastify')({ logger: true })
 const PORT = 5000
 
-// const cors = require('@fastify-cors')
-
 fastify.register(require('@fastify/swagger'), {
 	exposeRoute: true,
 	routePrefix: '/',
 	swagger: {
-		info: { title: 'Байкалский отдых' },
+		info: {
+			title: 'API Гостиницы Байкалский отдых',
+			description: 'Для проверки работоспособности базы данных',
+			version: '0.1.0',
+		},
 	},
 })
-fastify.register(require('./routes/users'))
+fastify.register(require('./routes/usersRoutes'))
 
-// fastify.register(cors, {
-// 	origin: ['http://localhost:80', 'http://localhost', 'http://client.ru'],
-// 	methods: 'GET,POST,PUT,DELETE',
-// })
 
 const start = async () => {
 	try {
