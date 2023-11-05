@@ -1,4 +1,5 @@
-const { db } = require('./database')
+const { db } = require('../config/database')
+
 const ScheduleModels = {
 	async getAllSchedule() {
 		try {
@@ -30,11 +31,11 @@ const ScheduleModels = {
 			return { success: false, message: error }
 		}
 	},
-	async updateSchedule(employee_id, day_of_week_id, start_time, end_time) {
+	async updateSchedule(id, employee_id, day_of_week_id, start_time, end_time) {
 		try {
 			const result = await db.query(
-				'UPDATE dutyschedule SET id_employess=$1, id_day_of_week=$2, start_time=$3, end_time=$4);',
-				[employee_id, day_of_week_id, start_time, end_time]
+				'UPDATE dutyschedule SET id_employess=$2, id_day_of_week=$3, start_time=$4, end_time=$5 WHERE id = $1;',
+				[id, employee_id, day_of_week_id, start_time, end_time]
 			)
 			return { success: true, data: result.rows }
 		} catch (error) {
@@ -44,7 +45,7 @@ const ScheduleModels = {
 	async deleteSchedule(schedule_id) {
 		try {
 			const result = await db.query(
-				'DELETE FROM dutyschedule WHERE schedule_id=$1);',
+				'DELETE FROM dutyschedule WHERE schedule_id=$1;',
 				[schedule_id]
 			)
 			return { success: true, data: result.rows }

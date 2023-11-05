@@ -6,6 +6,17 @@ const Position = {
 	},
 }
 
+const Schedule = {
+	type: 'object',
+	properties: {
+		id: { type: 'number' },
+		employee_id: { type: 'number' },
+		id_day_of_week: { type: 'string' },
+		start_time: { type: 'string' },
+		end_time: { type: 'string' },
+	},
+}
+
 const Service = {
 	type: 'object',
 	properties: {
@@ -71,4 +82,5 @@ module.exports = {
 	Position,
 	Employee,
 	Guest,
+	Schedule,
 }
