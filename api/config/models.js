@@ -37,6 +37,15 @@ const Service = {
 	},
 }
 
+const Distribution = {
+	type: 'object',
+	properties: {
+		id: { type: 'number' },
+		id_rooms: { type: 'number' },
+		id_guests: { type: 'number' },
+	},
+}
+
 const Guest = {
 	type: 'object',
 	properties: {
@@ -95,4 +104,5 @@ module.exports = {
 	Guest,
 	Schedule,
 	Room,
+	Distribution,
 }
