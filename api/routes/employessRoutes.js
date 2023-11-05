@@ -1,4 +1,4 @@
-const { Service, Employee } = require('../config/models')
+const { Employee } = require('../config/models')
 const employeesController = require('../controllers/employeeController')
 
 const getAll = {
