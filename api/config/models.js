@@ -17,6 +17,17 @@ const Schedule = {
 	},
 }
 
+const Room = {
+	type: 'object',
+	properties: {
+		id: { type: 'number' },
+		count_person: { type: 'number' },
+		id_type: { type: 'number' },
+		price: { type: 'number' },
+		id_employee: { type: 'number' },
+	},
+}
+
 const Service = {
 	type: 'object',
 	properties: {
@@ -83,4 +94,5 @@ module.exports = {
 	Employee,
 	Guest,
 	Schedule,
+	Room,
 }
