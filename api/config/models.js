@@ -93,7 +93,7 @@ const User = {
 	properties: {
 		id: { type: 'number' },
 		login: { type: 'string' },
-		typeUser: { type: 'string' },
+		type: { type: 'string' },
 		account: {
 			id: { type: 'number' },
 			first_name: { type: 'string' },
