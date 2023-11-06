@@ -11,7 +11,7 @@ const Schedule = {
 	type: 'object',
 	properties: {
 		id: { type: 'number' },
-		employee_id: { type: 'number' },
+		id_employess: { type: 'number' },
 		id_day_of_week: { type: 'string' },
 		start_time: { type: 'string' },
 		end_time: { type: 'string' },
