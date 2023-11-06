@@ -38,7 +38,7 @@ const Room = {
 		count_person: { type: 'number' },
 		id_type: { type: 'number' },
 		price: { type: 'number' },
-		id_employee: { type: 'number' },
+		id_employess: { type: 'number' },
 	},
 }
 
