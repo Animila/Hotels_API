@@ -3,6 +3,7 @@ const Position = {
 	properties: {
 		id: { type: 'number' },
 		title: { type: 'string' },
+		salary: { type: 'number' },
 	},
 }
 

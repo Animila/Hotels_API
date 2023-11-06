@@ -19,6 +19,7 @@ fastify.register(require('./routes/guestsRoutes'))
 fastify.register(require('./routes/scheduleRoutes'))
 fastify.register(require('./routes/roomsRoutes'))
 fastify.register(require('./routes/distributionsRoutes'))
+fastify.register(require('./routes/positionRoutes'))
 
 const start = async () => {
 	try {
