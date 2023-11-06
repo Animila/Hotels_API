@@ -84,7 +84,7 @@ const Employee = {
 		third_name: { type: 'string' },
 		address: { type: 'string' },
 		telephone: { type: 'string' },
-		position: Position,
+		id_position: { type: 'number' },
 	},
 }
 
