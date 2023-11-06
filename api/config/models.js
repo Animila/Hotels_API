@@ -110,6 +110,14 @@ const User = {
 	},
 }
 
+const TypeRoom = {
+	type: 'object',
+	properties: {
+		id: { type: 'number' },
+		title: { type: 'string' },
+	},
+}
+
 module.exports = {
 	User,
 	Service,
@@ -120,4 +128,5 @@ module.exports = {
 	Room,
 	Distribution,
 	Provision,
+	TypeRoom,
 }
