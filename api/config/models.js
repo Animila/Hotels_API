@@ -18,6 +18,19 @@ const Schedule = {
 	},
 }
 
+const Provision = {
+	type: 'object',
+	properties: {
+		id: { type: 'number' },
+		id_service: { type: 'number' },
+		count: { type: 'number' },
+		id_guest: { type: 'number' },
+		result_price: { type: 'number' },
+		date: { type: 'string' },
+		id_employess: { type: 'number' },
+	},
+}
+
 const Room = {
 	type: 'object',
 	properties: {
@@ -106,4 +119,5 @@ module.exports = {
 	Schedule,
 	Room,
 	Distribution,
+	Provision,
 }

@@ -20,6 +20,7 @@ fastify.register(require('./routes/scheduleRoutes'))
 fastify.register(require('./routes/roomsRoutes'))
 fastify.register(require('./routes/distributionsRoutes'))
 fastify.register(require('./routes/positionRoutes'))
+fastify.register(require('./routes/provisionRoutes'))
 
 const start = async () => {
 	try {
