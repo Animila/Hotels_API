@@ -40,6 +40,28 @@ const GET = {
 			reply.status(500).send({ success: false, message: error })
 		}
 	},
+
+	async getStatics(req, reply) {
+		try {
+			const precent = await RoomModels.getPercentFree()
+			console.log(precent)
+			if (!precent.success) {
+				console.error('Ошибка базы данных: ', precent.message)
+				return reply
+					.status(502)
+					.send({ success: false, message: precent.message })
+			}
+
+			console.log(precent)
+
+			reply.send({
+				success: true,
+				data: { precent: precent.data[0].occupancy_percentage },
+			})
+		} catch (error) {
+			reply.status(500).send({ success: false, message: error })
+		}
+	},
 }
 
 const POST = {

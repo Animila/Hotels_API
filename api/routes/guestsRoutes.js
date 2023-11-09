@@ -37,6 +37,22 @@ const getById = {
 	handler: guestsController.GET.getGuestById,
 }
 
+const getStatics = {
+	schema: {
+		tags: ['guests'],
+		response: {
+			200: {
+				success: { type: 'boolean' },
+				data: {
+					count: { type: 'number' },
+					count_of_day: { type: 'number' },
+				},
+			},
+		},
+	},
+	handler: guestsController.GET.getStaticsGuest,
+}
+
 const create = {
 	schema: {
 		tags: ['guests'],
@@ -102,6 +118,7 @@ const deleteById = {
 
 function guestsRoutes(fastify, options, done) {
 	fastify.get('/guests', getAll)
+	fastify.get('/guests/statics', getStatics)
 	fastify.get('/guests/:id', getById)
 	fastify.post('/guests', create)
 	fastify.put('/guests/:id', updateById)

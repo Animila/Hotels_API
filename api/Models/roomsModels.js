@@ -16,6 +16,16 @@ const RoomsModels = {
 			return { success: false, message: error }
 		}
 	},
+	async getPercentFree() {
+		try {
+			const sql =
+				'SELECT ROUND((COUNT(*) * 100.0) / (SELECT COUNT(*) FROM rooms), 2) AS occupancy_percentage FROM distributions'
+			const result = await db.query(sql)
+			return { success: true, data: result.rows }
+		} catch (error) {
+			return { success: false, message: error }
+		}
+	},
 	async createRooms(count_person, id_type, price, id_employee) {
 		try {
 			const result = await db.query(

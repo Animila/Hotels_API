@@ -37,6 +37,21 @@ const getById = {
 	handler: roomsController.GET.getRoomById,
 }
 
+const getStatics = {
+	schema: {
+		tags: ['rooms'],
+		response: {
+			200: {
+				success: { type: 'boolean' },
+				data: {
+					precent: { type: 'string' },
+				},
+			},
+		},
+	},
+	handler: roomsController.GET.getStatics,
+}
+
 const create = {
 	schema: {
 		tags: ['rooms'],
@@ -96,6 +111,7 @@ const deleteById = {
 
 function roomsRoutes(fastify, options, done) {
 	fastify.get('/rooms', getAll)
+	fastify.get('/rooms/statics', getStatics)
 	fastify.get('/rooms/:id', getById)
 	fastify.post('/rooms', create)
 	fastify.put('/rooms/:id', updateById)

@@ -17,6 +17,34 @@ const GET = {
 			reply.status(500).send({ success: false, message: error })
 		}
 	},
+	async getStaticsGuest(req, reply) {
+		try {
+			const guests = await GuestModals.getAllGuest()
+			console.log(guests)
+			if (!guests.success) {
+				console.error('Ошибка базы данных: ', guests.message)
+				return reply
+					.status(502)
+					.send({ success: false, message: guests.message })
+			}
+
+			const guestDay = await GuestModals.getNewGuestByDay()
+			console.log(guestDay)
+			if (!guestDay.success) {
+				console.error('Ошибка базы данных: ', guestDay.message)
+				return reply
+					.status(502)
+					.send({ success: false, message: guestDay.message })
+			}
+
+			reply.send({
+				success: true,
+				data: { count: guests.data.length, active: guestDay.data.length },
+			})
+		} catch (error) {
+			reply.status(500).send({ success: false, message: error })
+		}
+	},
 	async getGuestById(req, reply) {
 		try {
 			const { id } = req.params

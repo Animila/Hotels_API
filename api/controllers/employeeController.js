@@ -1,4 +1,5 @@
 const EmployeeModals = require('../Models/employeeModels')
+const ScheduleModels = require('../Models/scheduleModels')
 
 const GET = {
 	async getAllEmployees(req, reply) {
@@ -14,6 +15,35 @@ const GET = {
 			reply.send({ success: true, data: result.data })
 		} catch (error) {
 			console.log(error)
+			reply.status(500).send({ success: false, message: error })
+		}
+	},
+
+	async getStaticsEmployee(req, reply) {
+		try {
+			const employees = await EmployeeModals.getAllEmployees()
+			console.log(employees)
+			if (!employees.success) {
+				console.error('Ошибка базы данных: ', employees.message)
+				return reply
+					.status(502)
+					.send({ success: false, message: employees.message })
+			}
+
+			const scheduleNow = await ScheduleModels.getScheduleNow()
+			console.log(scheduleNow)
+			if (!scheduleNow.success) {
+				console.error('Ошибка базы данных: ', scheduleNow.message)
+				return reply
+					.status(502)
+					.send({ success: false, message: scheduleNow.message })
+			}
+
+			reply.send({
+				success: true,
+				data: { count: employees.data.length, active: scheduleNow.data.length },
+			})
+		} catch (error) {
 			reply.status(500).send({ success: false, message: error })
 		}
 	},

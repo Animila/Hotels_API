@@ -18,6 +18,16 @@ const GuestModals = {
 			return { success: false, message: error }
 		}
 	},
+	async getNewGuestByDay() {
+		try {
+			const result = await db.query(
+				"SELECT * FROM guests WHERE start_date >= CURRENT_DATE - INTERVAL '1 day';"
+			)
+			return { success: true, data: result.rows }
+		} catch (error) {
+			return { success: false, message: error }
+		}
+	},
 	async createGuest(
 		first_name,
 		last_name,

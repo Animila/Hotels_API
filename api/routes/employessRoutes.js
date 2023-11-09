@@ -37,6 +37,22 @@ const getById = {
 	handler: employeesController.GET.getEmployeeById,
 }
 
+const getStatics = {
+	schema: {
+		tags: ['employees'],
+		response: {
+			200: {
+				success: { type: 'boolean' },
+				data: {
+					count: { type: 'number' },
+					active: { type: 'number' },
+				},
+			},
+		},
+	},
+	handler: employeesController.GET.getStaticsEmployee,
+}
+
 const create = {
 	schema: {
 		tags: ['employees'],
@@ -98,6 +114,7 @@ const deleteById = {
 
 function employeesRoutes(fastify, options, done) {
 	fastify.get('/employees', getAll)
+	fastify.get('/employees/statics', getStatics)
 	fastify.get('/employees/:id', getById)
 	fastify.post('/employees', create)
 	fastify.put('/employees/:id', updateById)

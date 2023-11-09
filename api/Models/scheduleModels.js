@@ -9,6 +9,15 @@ const ScheduleModels = {
 			return { success: false, message: error }
 		}
 	},
+	async getScheduleNow() {
+		try{
+			const sql = "SELECT * FROM dutyschedule WHERE id_day_of_week = EXTRACT(DOW FROM CURRENT_DATE) -- текущий день недели (1-7) AND CURRENT_TIME BETWEEN start_time AND end_time;"
+			const result = await db.query(sql)
+		return { success: true, data: result.rows }
+		} catch (error) {
+			return { success: false, message: error }
+		}
+	},
 	async getScheduleById(schedule_id) {
 		try {
 			const result = await db.query(
