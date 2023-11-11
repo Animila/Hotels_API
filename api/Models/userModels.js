@@ -90,10 +90,18 @@ const UserModels = {
 	},
 	async updateUser(id, login, password) {
 		try {
-			const userResult = await db.query(
-				'UPDATE users SET login=$1, password=$2 WHERE id=$3 RETURNING *;',
-				[login, password, id]
-			)
+			var userResult
+			if (password) {
+				userResult = await db.query(
+					'UPDATE users SET login=$1, password=$2 WHERE id=$3 RETURNING *;',
+					[login, password, id]
+				)
+			} else {
+				userResult = await db.query(
+					'UPDATE users SET login=$1 WHERE id=$2 RETURNING *;',
+					[login, id]
+				)
+			}
 			console.log(userResult)
 			return { success: true, data: userResult.rows[0] }
 		} catch (error) {
