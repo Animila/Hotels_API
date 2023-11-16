@@ -67,7 +67,7 @@ const GET = {
 const POST = {
 	async createRoom(req, reply) {
 		try {
-			const { count_person, id_type, price, id_employee } = req.body
+			const { count_person, id_type, price, id_employess } = req.body
 			if (!count_person)
 				return reply
 					.status(500)
@@ -76,17 +76,17 @@ const POST = {
 				return reply
 					.status(500)
 					.send({ success: false, message: 'нет id_type' })
-			if (!id_employee)
+			if (!id_employess)
 				return reply
 					.status(500)
-					.send({ success: false, message: 'нет id_employee' })
+					.send({ success: false, message: 'нет id_employess' })
 			if (!price)
 				return reply.status(500).send({ success: false, message: 'нет price' })
 			const result = await RoomModels.createRooms(
 				count_person,
 				id_type,
 				price,
-				id_employee
+				id_employess
 			)
 			if (!result.success) {
 				console.error('Ошибка базы данных: ', result.message)
@@ -107,7 +107,7 @@ const PUT = {
 	async updateRoom(req, reply) {
 		try {
 			const { id } = req.params
-			const { count_person, id_type, price, id_employee } = req.body
+			const { count_person, id_type, price, id_employess } = req.body
 			const result = await RoomModels.updateRooms(
 				id,
 				count_person,
