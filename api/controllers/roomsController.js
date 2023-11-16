@@ -113,7 +113,7 @@ const PUT = {
 				count_person,
 				id_type,
 				price,
-				id_employee
+				id_employess
 			)
 			if (!result.success) {
 				console.error('Ошибка базы данных: ', result.message)
