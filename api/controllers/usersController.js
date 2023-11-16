@@ -20,7 +20,6 @@ const GET = {
 					return await getProfile(user)
 				})
 			)
-			console.log(userProfiles)
 
 			reply.send({ success: true, data: userProfiles })
 		} catch (error) {
@@ -44,7 +43,6 @@ const GET = {
 					.send({ success: false, message: 'Пользователь не найден' })
 			// получаем данные о пользователе
 			const dataUser = resultUser.data[0]
-			console.log(dataUser)
 			const user = await getProfile(dataUser)
 
 			reply.send({ success: true, data: user })
@@ -127,7 +125,6 @@ const POST = {
 		)
 
 		if (!regUser.success) {
-			console.log(regUser.message)
 			return reply
 				.status(500)
 				.send({ success: false, message: regUser.message })
@@ -135,7 +132,6 @@ const POST = {
 
 		const user = await getProfile(regUser.data)
 
-		console.log(user)
 
 		return reply.status(200).send({ success: true, data: user })
 	},
@@ -151,7 +147,6 @@ const PUT = {
 				return reply
 					.status(500)
 					.send({ success: false, message: result.message })
-			console.log(result)
 			reply.send({ success: true, data: result.data })
 		} catch (error) {
 			console.log(error)
@@ -180,7 +175,6 @@ const DELETE = {
 				return reply
 					.status(500)
 					.send({ success: false, message: result.message })
-			console.log({ success: true, data: { id: id } })
 			reply.send({ success: true, data: { id: id } })
 		} catch (error) {
 			console.log(error)

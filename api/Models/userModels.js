@@ -58,7 +58,6 @@ const UserModels = {
 		}
 	},
 	async loginAuth(login, password) {
-		console.log(login, password)
 		try {
 			const result = await db.query(
 				'SELECT * FROM users WHERE login = $1 AND password = $2;',
@@ -75,13 +74,11 @@ const UserModels = {
 		}
 	},
 	async createUser(login, password, type, id_person) {
-		console.log(login, password, type, id_person)
 		try {
 			const userResult = await db.query(
 				'INSERT INTO users (type,  login, password, id_person) VALUES ($1, $2, $3, $4) RETURNING *;',
 				[type, login, password, id_person]
 			)
-			console.log(userResult)
 			return { success: true, data: userResult.rows[0] }
 		} catch (error) {
 			console.log(error)
@@ -102,7 +99,6 @@ const UserModels = {
 					[login, id]
 				)
 			}
-			console.log(userResult)
 			return { success: true, data: userResult.rows[0] }
 		} catch (error) {
 			console.log(error)
@@ -112,7 +108,6 @@ const UserModels = {
 	async deleteUser(id) {
 		try {
 			const result = db.query('DELETE FROM users WHERE id=$1;', [id])
-			console.log(result)
 			return { success: true }
 		} catch (error) {
 			console.log(error)

@@ -5,7 +5,6 @@ const GET = {
 	async getAllEmployees(req, reply) {
 		try {
 			const result = await EmployeeModals.getAllEmployees()
-			console.log(result)
 			if (!result.success) {
 				console.error('Ошибка базы данных: ', result.message)
 				return reply
@@ -22,7 +21,6 @@ const GET = {
 	async getStaticsEmployee(req, reply) {
 		try {
 			const employees = await EmployeeModals.getAllEmployees()
-			console.log(employees)
 			if (!employees.success) {
 				console.error('Ошибка базы данных: ', employees.message)
 				return reply
@@ -31,7 +29,6 @@ const GET = {
 			}
 
 			const scheduleNow = await ScheduleModels.getScheduleNow()
-			console.log(scheduleNow)
 			if (!scheduleNow.success) {
 				console.error('Ошибка базы данных: ', scheduleNow.message)
 				return reply
@@ -51,7 +48,6 @@ const GET = {
 		try {
 			const { id } = req.params
 			const result = await EmployeeModals.getEmployeeById(id)
-			console.log(result)
 
 			if (!result.success) {
 				console.error('Ошибка базы данных: ', result.message)
@@ -64,7 +60,6 @@ const GET = {
 					.status(500)
 					.send({ success: false, message: 'Персонал не найден' })
 			}
-			console.log(result)
 			reply.send({ success: true, data: result.data[0] })
 		} catch (error) {
 			reply.status(500).send({ success: false, message: error })
@@ -121,7 +116,6 @@ const POST = {
 					.status(502)
 					.send({ success: false, message: result.message })
 			}
-			console.log(result)
 			reply.send({ success: true, data: result.data[0] })
 		} catch (error) {
 			console.log(error)
@@ -157,7 +151,6 @@ const PUT = {
 					.status(502)
 					.send({ success: false, message: result.message })
 			}
-			console.log(result)
 			reply.send({ success: true, data: result.data[0] })
 		} catch (error) {
 			console.log(error)
@@ -177,7 +170,6 @@ const DELETE = {
 					.status(502)
 					.send({ success: false, message: result.message })
 			}
-			console.log(result)
 			reply.send({ success: true, data: { id: id } })
 		} catch (error) {
 			console.log(error)

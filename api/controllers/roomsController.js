@@ -4,7 +4,6 @@ const GET = {
 	async getAllRooms(req, reply) {
 		try {
 			const result = await RoomModels.getAllRooms()
-			console.log(result)
 			if (!result.success) {
 				console.error('Ошибка базы данных: ', result.message)
 				return reply
@@ -21,7 +20,7 @@ const GET = {
 		try {
 			const { id } = req.params
 			const result = await RoomModels.getRoomsById(id)
-			console.log(result)
+			(result)
 
 			if (!result.success) {
 				console.error('Ошибка базы данных: ', result.message)
@@ -34,7 +33,6 @@ const GET = {
 					.status(500)
 					.send({ success: false, message: 'Комната не найдена' })
 			}
-			console.log(result)
 			reply.send({ success: true, data: result.data[0] })
 		} catch (error) {
 			reply.status(500).send({ success: false, message: error })
@@ -44,7 +42,6 @@ const GET = {
 	async getStatics(req, reply) {
 		try {
 			const precent = await RoomModels.getPercentFree()
-			console.log(precent)
 			if (!precent.success) {
 				console.error('Ошибка базы данных: ', precent.message)
 				return reply
@@ -52,7 +49,6 @@ const GET = {
 					.send({ success: false, message: precent.message })
 			}
 
-			console.log(precent)
 
 			reply.send({
 				success: true,
@@ -94,7 +90,6 @@ const POST = {
 					.status(502)
 					.send({ success: false, message: result.message })
 			}
-			console.log(result)
 			reply.send({ success: true, data: result.data[0] })
 		} catch (error) {
 			console.log(error)
@@ -121,7 +116,7 @@ const PUT = {
 					.status(502)
 					.send({ success: false, message: result.message })
 			}
-			console.log(result)
+			(result)
 			reply.send({ success: true, data: result.data[0] })
 		} catch (error) {
 			console.log(error)
@@ -141,7 +136,6 @@ const DELETE = {
 					.status(502)
 					.send({ success: false, message: result.message })
 			}
-			console.log(result)
 			reply.send({ success: true, data: { id: id } })
 		} catch (error) {
 			console.log(error)

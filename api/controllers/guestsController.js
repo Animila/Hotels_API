@@ -4,7 +4,6 @@ const GET = {
 	async getAllGuests(req, reply) {
 		try {
 			const result = await GuestModals.getAllGuest()
-			console.log(result)
 			if (!result.success) {
 				console.error('Ошибка базы данных: ', result.message)
 				return reply
@@ -20,7 +19,6 @@ const GET = {
 	async getStaticsGuest(req, reply) {
 		try {
 			const guests = await GuestModals.getAllGuest()
-			console.log(guests)
 			if (!guests.success) {
 				console.error('Ошибка базы данных: ', guests.message)
 				return reply
@@ -29,7 +27,6 @@ const GET = {
 			}
 
 			const guestDay = await GuestModals.getNewGuestByDay()
-			console.log(guestDay)
 			if (!guestDay.success) {
 				console.error('Ошибка базы данных: ', guestDay.message)
 				return reply
@@ -49,7 +46,6 @@ const GET = {
 		try {
 			const { id } = req.params
 			const result = await GuestModals.getGuestById(id)
-			console.log(result)
 
 			if (!result.success) {
 				console.error('Ошибка базы данных: ', result.message)
@@ -62,7 +58,6 @@ const GET = {
 					.status(500)
 					.send({ success: false, message: 'Гость не найден' })
 			}
-			console.log(result)
 			reply.send({ success: true, data: result.data[0] })
 		} catch (error) {
 			reply.status(500).send({ success: false, message: error })
@@ -129,7 +124,6 @@ const POST = {
 					.status(502)
 					.send({ success: false, message: result.message })
 			}
-			console.log(result)
 			reply.send({ success: true, data: result.data[0] })
 		} catch (error) {
 			console.log(error)
@@ -169,7 +163,6 @@ const PUT = {
 					.status(502)
 					.send({ success: false, message: result.message })
 			}
-			console.log(result)
 			reply.send({ success: true, data: result.data[0] })
 		} catch (error) {
 			console.log(error)
@@ -189,7 +182,6 @@ const DELETE = {
 					.status(502)
 					.send({ success: false, message: result.message })
 			}
-			console.log(result)
 			reply.send({ success: true, data: { id: id } })
 		} catch (error) {
 			console.log(error)
